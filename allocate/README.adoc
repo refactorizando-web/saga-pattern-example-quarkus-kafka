@@ -7,7 +7,7 @@
 This microservice has born with the aim of change and process status seat after receive an event from payment service.
 
 If you need more information you can take a look into:
-https://refactorizando.com
+https://refactorizando.com/patron-saga-quarkus-kafka
 
 == Introduction
 

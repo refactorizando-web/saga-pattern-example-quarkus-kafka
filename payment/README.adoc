@@ -7,7 +7,7 @@
 This microservice has born with the aim of make a new payment after lock a seat in the previous transaction.
 
 If you need more information you can take a look into:
-https://refactorizando.com
+https://refactorizando.com/patron-saga-quarkus-kafka
 
 == Introduction
 

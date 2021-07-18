@@ -8,7 +8,7 @@ This microservice has born with the aim of placing a new order to get a seat
 to see a good movie.
 
 If you need more information you can take a look into:
-https://refactorizando.com
+https://refactorizando.com/patron-saga-quarkus-kafka
 
 == Introduction
 
