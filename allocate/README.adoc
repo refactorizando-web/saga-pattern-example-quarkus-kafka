@@ -1,0 +1,76 @@
+= Allocate Service =
+{localdatetime}
+:toc:
+:doctype: book
+:docinfo:
+
+This microservice has born with the aim of change and process status seat after receive an event from payment service.
+
+If you need more information you can take a look into:
+https://refactorizando.com
+
+== Introduction
+
+This microservice is responsible for receiving an event and processing and change the status seat to OCCUPIED.
+Then, if all goes well, a new event will be sent to change the status of the seat in the order service. Otherwise,
+a compensation process, and a rollback will be triggered  to leave the seat in its original state (FREE).
+
+
+== How does it work?
+
+=== Run kafka
+The first thing you need to do is launch a kafka broker that you can do with the following docker:
+
+   docker run --rm -p 2181:2181 -p 3030:3030 -p 8081-8083:8081-8083 -p 9581-9585:9581-9585 -p 9092:9092 -e ADV_HOST=localhost landoop/fast-data-dev:latest
+
+=== Run the application
+
+==== Running the application in dev mode
+
+You can run your application in dev mode that enables live coding using:
+```shell script
+./mvnw compile quarkus:dev
+```
+
+> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8085/q/dev/.
+
+==== From your IDE
+
+You can run your application using your IDE and running the class:
+```shell script
+AllocateApplication.java
+```
+
+==== Packaging and running the application
+
+The application can be packaged using:
+```shell script
+./mvnw package
+```
+It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
+Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+
+If you want to build an _über-jar_, execute the following command:
+```shell script
+./mvnw package -Dquarkus.package.type=uber-jar
+```
+
+The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+
+==== Creating a native executable
+
+You can create a native executable using:
+```shell script
+./mvnw package -Pnative
+```
+
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+```shell script
+./mvnw package -Pnative -Dquarkus.native.container-build=true
+```
+
+You can then execute your native executable with: `./target/quarkus-saga-1.0.0-SNAPSHOT-runner`
+
+=== Test the application
+
+You can make a request to the next endpoint http://localhost:8085/allocates/1, to check status seat in your database.
