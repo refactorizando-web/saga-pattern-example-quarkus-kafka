@@ -30,6 +30,8 @@ image::SagaPatternArchitecture.png[]
 
 == Order Service
 
+https://github.com/refactorizando-web/saga-pattern-example-quarkus-kafka/tree/master/order
+
 This is the entry point in our architecture. This service expect a seat in a json format to start a new transaction to reserve a seat in the cinema. When a user make a new reserve a new procces start 
 and the seat is locked, then a status change and a new event will be triggered to make a payment. If every step goes well then a seat will change it status to OCCUPIED.
 
@@ -39,11 +41,15 @@ In the case of something fails, for example you are making a new payment and the
 
 == Payment Service
 
+https://github.com/refactorizando-web/saga-pattern-example-quarkus-kafka/tree/master/payment
+
 The goal of this service is save a new payment in the database. When a new event from order service is received then create and save a new payment. 
 
 If the payment is saved successfully then a event to change the seat status is sent. In other case a compensation procces start to make a rollback, delete the payment and change to FREE the status seat.
 
 
 == Allocate Service
+
+https://github.com/refactorizando-web/saga-pattern-example-quarkus-kafka/tree/master/allocate
 
 Allocate service is going to be our last service involved in our architecture. When a payment is saved, then a new event is triggered. Allocate Service processes that event and change the status seat to OCCUPIED and notifies this change to order service.
