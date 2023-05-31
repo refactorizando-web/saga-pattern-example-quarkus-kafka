@@ -8,7 +8,9 @@
 This project is a simple example about how to make a saga architecture in Quarkus with Apache Kafka and H2 as a database in memory.
 
 
-If you need more information you can take a look into: https://refactorizando.com/patron-saga-quarkus-kafka
+If you need more information you can take a look into:
+  * Spanish: https://refactorizando.com/patron-saga-quarkus-kafka
+  * English: https://refactorizando.com/en/saga-pattern-with-quarkus-and-kafka/
 
 == Introduction
 
